@@ -1,0 +1,28 @@
+﻿@page "/q"
+@using Microsoft.AspNetCore.WebUtilities 
+@inject NavigationManager navManager
+<h3>Querystring1 @ID</h3>
+<button @onclick="setquery">Querystring </button>
+@code {     
+    public int ID { get; set; }
+    protected override void OnInitialized()
+    {
+
+        var uri = navManager.ToAbsoluteUri(navManager.Uri);
+        QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id);
+
+        if (id.Count>0)
+        {
+            ID = int.Parse(id.First());
+        }
+
+    }
+    void setquery()
+    {
+        //var uri = navManager.ToAbsoluteUri(navManager.Uri);
+       var u= QueryHelpers.AddQueryString(navManager.Uri, "id", "42");
+        navManager.NavigateTo(u);
+
+    }
+
+}
