@@ -1,0 +1,13 @@
+﻿@page "/Binding"
+<h3>Binding</h3>
+<input @bind="@MyProperty" style="background-color:@MyProperty" class="form-group" @bind:event="oninput" />
+<input @bind="Datum"  class="form-group" @bind:format="dd.MM.yyyy" />
+<input @bind="Datum" class="form-group" type="date" />
+<input @bind="Datum" class="form-group" type="datetime-local" />
+@Datum 
+@MyProperty
+@code {
+    public string MyProperty { get; set; }
+    public DateTime Datum { get; set; } = DateTime.Now;
+
+}
