@@ -1,0 +1,23 @@
+﻿@page "/pe"
+<h3>PageEvents</h3>
+@MyProperty
+<button @onclick="clickme">clickme </button>
+
+@code {
+    public int MyProperty { get; set; }
+    protected override void OnInitialized()   //first load 1)
+    {
+
+    }
+    protected override void OnAfterRender(bool firstRender) //first load 2) //second load 2)
+    {
+        if (firstRender)
+        {
+
+        }
+    }
+    void clickme() //second load 1) 
+    {
+
+    }
+}
