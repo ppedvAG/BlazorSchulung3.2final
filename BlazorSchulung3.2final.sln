@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.128
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSchulung3.2final", "BlazorSchulung3.2final\BlazorSchulung3.2final.csproj", "{88F2B02E-31F7-483E-8F3F-98E14EE6A1F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSchulung3.2final", "BlazorSchulung3.2final\BlazorSchulung3.2final.csproj", "{88F2B02E-31F7-483E-8F3F-98E14EE6A1F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
