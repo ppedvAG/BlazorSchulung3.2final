@@ -18,6 +18,7 @@ namespace BlazorSchulung3._2final
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
