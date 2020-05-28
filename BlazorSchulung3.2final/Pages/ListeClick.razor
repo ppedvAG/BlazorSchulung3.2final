@@ -1,0 +1,25 @@
+﻿@page "/liste1"
+<h3>CodeLogik</h3>
+<div class="list-group">
+    @for (int i = 0; i < 7; i++)
+    {
+        int x = i;
+        <a  href="" class='list-group-item list-group-item-action  @(i%2==0?"list-group-item-dark":"list-group-item-light")'
+           @onclick="@(()=>selected(x))"
+           @onclick:preventDefault>
+            @DateTime.Now.AddDays(i).ToString("dddd")
+        </a>
+    }
+</div>
+geklickt: @MyProperty
+
+
+@code
+{
+    public int MyProperty { get; set; }
+    void selected(int i)
+    {
+        MyProperty = i;
+    }
+
+}
