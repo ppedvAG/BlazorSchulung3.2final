@@ -1,0 +1,15 @@
+﻿@implements IDisposable
+<h3>Aufraeumen</h3>
+
+@code {
+    public int? MyProperty { get; set; }
+    protected override void OnInitialized()
+    {
+        MyProperty = 19;
+    }
+    void IDisposable.Dispose()
+    {
+        MyProperty = null;
+    }
+
+}
