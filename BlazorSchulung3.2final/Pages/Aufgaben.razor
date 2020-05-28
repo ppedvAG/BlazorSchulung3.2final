@@ -14,19 +14,35 @@
     @foreach (var item in ListeAufgaben)
     {
         <li class="list-group-item">
-            @item.Text
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck@(item.ID)" @bind="item.Erledigt">
+                <label class="custom-control-label" for="customCheck@(item.ID)" style='@(item.Erledigt?"text-decoration:line-through":"")'>  @item.Text</label>
+            </div>
+
 
         </li>
-        }
-    </ul>
-
-    @code {
-        public List<Aufgabe> ListeAufgaben { get; set; } = new List<Aufgabe>();
-        public string NeuAufgabe { get; set; }
-        void AddAufgabe()
-        {
-            ListeAufgaben.Add(new Aufgabe() { ID = ListeAufgaben.Count(), Text = NeuAufgabe });
-            NeuAufgabe = "";
-            var daten = JsonSerializer.Serialize(ListeAufgaben);
-        }
     }
+</ul>
+
+@code {
+    public List<Aufgabe> ListeAufgaben { get; set; } = new List<Aufgabe>();
+    public string NeuAufgabe { get; set; }
+    void AddAufgabe()
+    {
+        ListeAufgaben.Add(new Aufgabe() { ID = ListeAufgaben.Count(), Text = NeuAufgabe });
+        NeuAufgabe = "";
+        var daten = JsonSerializer.Serialize(ListeAufgaben);
+        JSRuntime.InvokeVoidAsync("localStorage.setItem", "daten", daten);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var daten = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "daten");
+            ListeAufgaben = JsonSerializer.Deserialize<List<Aufgabe>>(daten);
+            StateHasChanged();
+        }
+
+    }
+}
