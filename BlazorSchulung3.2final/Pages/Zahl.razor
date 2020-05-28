@@ -1,0 +1,18 @@
+﻿@page "/Zahl"
+@using BlazorSchulung3._2final.Data 
+@inject Zaehler SingleZaehler
+<h3>Zahl</h3>
+<button @onclick="plus">plus</button>
+@SingleZaehler.MyProperty
+@code {
+
+    void plus()
+    {
+        SingleZaehler.Inc();
+       
+    }
+    protected override void OnInitialized()
+    {
+        SingleZaehler.OnChanged += (_, __) => InvokeAsync(StateHasChanged);
+    }
+}

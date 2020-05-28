@@ -30,6 +30,7 @@ namespace BlazorSchulung3._2final
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<Zaehler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
