@@ -12,11 +12,11 @@ namespace BlazorSchulung3._2final.Data
         private string description;
 
         private string _title;
-
-        public string Title
+                public string Title
         {
             get { return _title; }
             set { _title = value;
+                
                 OnChange?.Invoke(this, EventArgs.Empty);
 
             }
