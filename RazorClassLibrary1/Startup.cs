@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorSchulung3._2final.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlazorSchulung3._2final
 {
@@ -32,7 +31,6 @@ namespace BlazorSchulung3._2final
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<Zaehler>();
-            services.AddDbContext<AufgabenContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Aufgaben")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

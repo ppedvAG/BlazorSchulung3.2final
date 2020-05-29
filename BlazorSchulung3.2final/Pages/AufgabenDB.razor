@@ -1,0 +1,76 @@
+﻿@page "/DBAufgabe"
+@using BlazorSchulung3._2final.Data
+@using System.Text.Json
+@inject IJSRuntime JSRuntime
+@inject AufgabenContext db
+<h3>Aufgaben</h3>
+
+<div class="input-group mb-3">
+    <input class="form-control" @bind="NeuAufgabe" />
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @onclick="AddAufgabe">Button</button>
+    </div>
+</div>
+<ul class="list-group">
+    @if (ListeAufgaben == null)
+    {
+        @:Daten werden geladen...
+    }
+    else
+    {
+    @foreach (var item in ListeAufgaben)
+    {
+    <li class="list-group-item" @key="item.ID">
+        @if (item.IsEdit)
+        {
+            <input class="form-control" @bind="item.Text" @onfocusout="@(_ => aktualisiere(item))" />
+        }
+        else
+        {
+    <div class="form-inline">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck@(item.ID)" @bind="item.Erledigt">
+            <label class="custom-control-label" for="customCheck@(item.ID)"></label>
+
+        </div>
+        <span style='@(item.Erledigt ? "text-decoration:line-through" : "")' @onclick="@(_ => item.IsEdit = true)">@item.Text</span>
+    </div>
+        }
+    </li>
+    }
+    }
+</ul>
+
+@code {
+    public List<Aufgabe2> ListeAufgaben { get; set; }
+    public string NeuAufgabe { get; set; }
+    void aktualisiere(Aufgabe2 a)
+    {
+        a.IsEdit = false;
+        //var item = db.Aufgabe2.Find(a.ID);
+        //item.Text = a.Text;
+        //db.SaveChanges();
+        // db.Aufgabe2.Where(x=>x.ID==a.ID) wenn keine Primary key
+        db.Aufgabe2.Attach(a);
+        db.SaveChanges();
+    }
+    void AddAufgabe()
+    {
+        var a = new Aufgabe2() { Text = NeuAufgabe };
+        ListeAufgaben.Add(a);
+        db.Aufgabe2.Add(a);
+        db.SaveChanges();
+        NeuAufgabe = "";
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            ListeAufgaben = db.Aufgabe2.ToList();
+            StateHasChanged();
+        }
+
+    }
+}
