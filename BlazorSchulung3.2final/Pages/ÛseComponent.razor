@@ -1,0 +1,13 @@
+﻿@page "/uc"
+<h3>UseComponent</h3>
+<FirstComponent MyProperty="42" @ref="hannes" ></FirstComponent>
+<button @onclick="clickme">reset</button>
+@code {
+    FirstComponent hannes;
+    void clickme()
+    {
+        hannes.Reset();
+     
+    }
+
+}

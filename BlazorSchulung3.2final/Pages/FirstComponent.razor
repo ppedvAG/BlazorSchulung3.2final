@@ -1,0 +1,15 @@
+﻿<h3>FirstComponent</h3>@MyProperty
+
+@code {
+    [Parameter]
+    public int MyProperty { get; set; }
+    public void Reset()
+    {
+        MyProperty = 0;
+        StateHasChanged();
+    }
+    protected override void OnInitialized()
+    {
+        MyProperty++;
+    }
+}
