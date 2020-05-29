@@ -1,0 +1,15 @@
+﻿@inject BlazorSchulung3._2final.Data.HeadData head
+<title>@head.Title</title>
+<meta name="description" content="@head.Description">
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Description { get; set; }
+    protected override void OnInitialized()
+    {
+        head.Title=Title;
+        head.Description= Description;
+        head.OnChange += (_, __) => InvokeAsync(StateHasChanged);
+    }
+}

@@ -1,0 +1,22 @@
+﻿@page "/usem"
+
+<h3>UseModal</h3>
+<MyModal @ref="mymodal" Titel="Hallo Welt">
+    <ChildContent>
+        <p>das ist ganz wichtig usw</p>
+        <input class="form-control" @bind="MyProperty" />
+    </ChildContent>
+    <ButtonContent>
+        <button type="button" class="btn btn-secondary">Close</button>
+        <button type="button" class="btn btn-primary" @onclick="offen">Save changes</button>
+    </ButtonContent>
+</MyModal>
+<button @onclick="offen">show</button> 
+@code {
+    public int MyProperty { get; set; }
+    MyModal mymodal;
+    void offen()
+    {
+        mymodal.Show();
+    }
+}

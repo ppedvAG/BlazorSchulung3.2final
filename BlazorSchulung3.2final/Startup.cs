@@ -33,6 +33,7 @@ namespace BlazorSchulung3._2final
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<Zaehler>();
             services.AddDbContext<AufgabenContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Aufgaben")));
+            services.AddTransient<HeadData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
