@@ -17,4 +17,8 @@
     <Folder Include="Data\NewFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RazorClassLibrary2\RazorClassLibrary2.csproj" />
+  </ItemGroup>
+
 </Project>

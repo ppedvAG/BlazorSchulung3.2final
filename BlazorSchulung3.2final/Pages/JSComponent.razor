@@ -1,0 +1,11 @@
+﻿@page "/js"
+@inject IJSRuntime JsRuntime
+<h3>JSComponent</h3>
+<button @onclick="clicke">click</button>
+
+@code {
+    void clicke()
+    {
+        JsRuntime.InvokeVoidAsync("ppedv.SetTitle", "JSComponent super dupah");
+    }
+}
