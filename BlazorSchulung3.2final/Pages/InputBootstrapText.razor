@@ -1,0 +1,23 @@
+﻿@inherits InputText
+
+<input 
+    @attributes="AdditionalAttributes" 
+    class="@errorClass(CssClass)" 
+    value="@CurrentValue" 
+    @oninput="EventCallback.Factory.CreateBinder<string>(
+        this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
+@code
+{
+    //invalid->is-invalid
+    private string errorClass(string css)
+    {
+        if (css.Contains(" valid"))
+        {
+            return css.Replace(" valid", "");
+        }
+        else
+        {
+            return  css.Replace(" invalid", " is-invalid");
+        }
+    }
+}
