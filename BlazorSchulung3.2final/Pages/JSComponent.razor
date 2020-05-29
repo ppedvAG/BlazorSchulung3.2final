@@ -6,6 +6,9 @@
 @code {
     void clicke()
     {
-        JsRuntime.InvokeVoidAsync("ppedv.SetTitle", "JSComponent super dupah");
+        // JsRuntime.InvokeVoidAsync("ppedv.SetTitle", "JSComponent super dupah");
+        JsRuntime.InvokeVoidAsync("alert", "Hallo welt");
+        JsRuntime.InvokeVoidAsync("eval","document.title='JS inline'");
+        RazorClassLibrary2.ExampleJsInterop.Prompt(JsRuntime, "Hallo Lib Welt");
     }
 }
